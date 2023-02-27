@@ -51,12 +51,38 @@
 <body>
 	<div class="container">
 		<div class="output">
-			<p>$Mod-HTMS!/XMod.1.NoRay</p>
+			Welcome to the terminal window!
 		</div>
 		<div>
 			<span class="prompt">$</span>
-			<input class="input" type="text" placeholder="Enter a command here">
+			<input class="input" type="text" placeholder="Type your command here" onkeydown="if(event.keyCode==13){executeCommand();}">
 		</div>
 	</div>
+
+	<script>
+		function executeCommand() {
+			var inputField = document.querySelector('.input');
+			var command = inputField.value;
+			var output = document.createElement('div');
+			output.classList.add('output');
+
+			if (command === '') {
+				output.textContent = '';
+			} else if (command === 'help') {
+				output.textContent = 'This is a sample terminal window. Type any command to see the output.';
+			} else if (command === 'date') {
+				output.textContent = new Date().toLocaleString();
+			} else if (command === 'hello') {
+				output.textContent = 'Hello there!';
+			} else {
+				output.textContent = 'Unknown command: ' + command;
+			}
+
+			var container = document.querySelector('.container');
+			container.appendChild(output);
+
+			inputField.value = '';
+		}
+	</script>
 </body>
 </html>
