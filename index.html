@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Terminal Window</title>
+	<style>
+		body {
+			background-color: #1d1f21;
+			color: #c5c8c6;
+			font-family: "Monaco", "Courier New", monospace;
+			font-size: 14px;
+			line-height: 1.5;
+			margin: 0;
+			padding: 0;
+		}
+
+		.container {
+			width: 80%;
+			margin: 0 auto;
+			padding: 20px;
+		}
+
+		.prompt {
+			color: #81a2be;
+			display: inline-block;
+			padding-right: 10px;
+		}
+
+		.input {
+			display: inline-block;
+			width: calc(100% - 70px);
+			border: none;
+			background-color: transparent;
+			color: #c5c8c6;
+			font-family: "Monaco", "Courier New", monospace;
+			font-size: 14px;
+			line-height: 1.5;
+			outline: none;
+		}
+
+		.input:focus {
+			border: none;
+			outline: none;
+		}
+
+		.output {
+			color: #c5c8c6;
+			padding: 5px 0;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="output">
+			<p>$Mod-HTMS!/XMod.1.NoRay</p>
+		</div>
+		<div>
+			<span class="prompt">$</span>
+			<input class="input" type="text" placeholder="Enter a command here">
+		</div>
+	</div>
+</body>
+</html>
