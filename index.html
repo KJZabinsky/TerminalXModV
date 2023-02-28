@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html>
 <head>
 	<title>Terminal Window</title>
 	<style>
@@ -48,10 +47,13 @@
 		}
 	</style>
 </head>
+<head>
+	<title>TermXModV</title>
+</head>
 <body>
 	<div class="container">
 		<div class="output">
-			Welcome to the terminal window!
+			TermXModV
 		</div>
 		<div>
 			<span class="prompt">$</span>
@@ -68,12 +70,50 @@
 
 			if (command === '') {
 				output.textContent = '';
+			} else if (command === 'dir') {
+				var fileList = '';
+				for (var i = 0; i < localStorage.length; i++) {
+					fileList += localStorage.key(i) + '\n';
+				}
+				output.textContent = fileList;
+			} else if (command.startsWith('cd ')) {
+				output.textContent = 'Directory changed to ' + command.slice(3);
 			} else if (command === 'help') {
-				output.textContent = 'This is a sample terminal window. Type any command to see the output.';
+				output.textContent = 'Please refer to the github page for help.';
 			} else if (command === 'date') {
 				output.textContent = new Date().toLocaleString();
-			} else if (command === 'hello') {
-				output.textContent = 'Hello there!';
+			} else if (command === 'whoami') {
+				output.textContent = 'You are "Chromos@localhost$"';
+			} else if (command.startsWith('rd ')) {
+				var key = command.slice(3);
+				var value = localStorage.getItem(key);
+				if (value === null) {
+					output.textContent = `No value found for key "${key}" in local storage.`;
+				} else {
+					output.textContent = `Retrieved "${value}" with key "${key}" from local storage.`;
+				}
+			} else if (command.startsWith('del ')) {
+				output.textContent = 'File ' + command.slice(4) + ' has been deleted.';
+			} else if (command.startsWith('echo ')) {
+				output.textContent = command.slice(5);
+			} else if (command.startsWith('md ')) {
+				output.textContent = 'Directory ' + command.slice(3) + ' has been created.';
+			} else if (command.startsWith('nd ')) {
+				var keyAndValue = command.slice(3).split(' ');
+				var key = keyAndValue[0];
+				var value = keyAndValue.slice(1).join(' ');
+				localStorage.setItem(key, value);
+				output.textContent = `Stored "${value}" with key "${key}" in local storage.`
+			} else if (command.startsWith('run ')) {
+				var fileName = command.slice(4);
+				var extension = fileName.split('.').pop();
+
+				if (extension === 'html') {
+					window.open(fileName, '_blank');
+					output.textContent = 'Opening file: ' + fileName;
+				} else {
+					output.textContent = 'File format not supported.';
+				}
 			} else {
 				output.textContent = 'Unknown command: ' + command;
 			}
