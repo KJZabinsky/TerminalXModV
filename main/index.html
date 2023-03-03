@@ -99,8 +99,8 @@
 				output.textContent = command.slice(5);
 			} else if (command.startsWith('md ')) {
 				output.textContent = 'Directory ' + command.slice(3) + ' has been created.';
-            } else if (command.startsWith('runsnake')) {
-        		window.open('eval1.html', '_blank');
+            } else if (command.startsWith('runsnakecustom')) {
+        		window.open('snake.html', '_blank');
         		output.textContent = 'Snake Game Launched';
 			} else if (command.startsWith('nd ')) {
 				var keyAndValue = command.slice(3).split(' ');
